@@ -98,11 +98,11 @@ export interface AuthContextProps {
   /**
    * Alias for userManager.signInRedirect
    */
-  signIn: (args?: unknown) => Promise<void>;
+  login: (args?: unknown) => Promise<void>;
   /**
    * Alias for removeUser
    */
-  signOut: () => Promise<void>;
+  logout: () => Promise<void>;
   /**
    *
    */
