@@ -139,9 +139,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({
           name: userData?.profile.name
         },
         isAuthenticated: userData?.expired ? false : (JSON.parse(
-          localStorage.getItem(
-            `oidc.user:${props.authority}:${props.clientId}`
-        )!)?.expires_at <
+          sessionStorage.getItem(
+            `oidc.user:${userManager.settings.authority}:${userManager.settings.client_id}`
+        )!)?.expires_at >
           new Date().getTime() / 1000
         ),
         method
