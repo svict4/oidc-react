@@ -71,6 +71,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
   ...props
 }) => {
   const [userData, setUserData] = useState<User | null>(null);
+  const method = "OIDC";
 
   const userManager = initUserManager(props);
 
@@ -131,6 +132,19 @@ export const AuthProvider: FC<AuthProviderProps> = ({
         },
         userManager,
         userData,
+        user: {
+          id: userData?.profile.name,
+          avatar: userData?.profile.picture,
+          email: userData?.profile.email,
+          name: userData?.profile.name
+        },
+        isAuthenticated: userData?.expired ? false : (JSON.parse(
+          localStorage.getItem(
+            `oidc.user:${props.authority}:${props.clientId}`
+        )!)?.expires_at <
+          new Date().getTime() / 1000
+        ),
+        method
       }}
     >
       {children}

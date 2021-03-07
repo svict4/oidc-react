@@ -86,6 +86,14 @@ export interface AuthProviderProps {
   onSignOut?: (options?: AuthProviderSignOutProps) => Promise<void> | void;
 }
 
+export interface UserType {
+  id?: string;
+  avatar?: string;
+  email?: string;
+  name?: string;
+  [key: string]: unknown;
+}
+
 export interface AuthContextProps {
   /**
    * Alias for userManager.signInRedirect
@@ -107,4 +115,10 @@ export interface AuthContextProps {
    * See [User](https://github.com/IdentityModel/oidc-client-js/wiki#user) for more details.
    */
   userData?: User | null;
+
+  user: UserType | null;
+
+  isAuthenticated: boolean | null;
+
+  method: string;
 }
